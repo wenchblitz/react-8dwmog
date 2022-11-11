@@ -52,6 +52,16 @@ export default function App() {
   // console.clear();
   // console.log(countries);
 
+  const renderItems = (arr) => {
+    return arr && arr !== undefined
+      ? arr?.map(({ id, name }, i) => (
+          <option key={i} value={id}>
+            {name}
+          </option>
+        ))
+      : null;
+  };
+
   return (
     <div className="App">
       <section>
@@ -62,13 +72,7 @@ export default function App() {
           onChange={(e) => handleCountry(e)}
         >
           <option value="0">Select Country</option>
-          {country && country !== undefined
-            ? country?.map(({ id, name }, i) => (
-                <option key={i} value={id}>
-                  {name}
-                </option>
-              ))
-            : 'No Country'}
+          {renderItems(country)}
         </select>
       </section>
       <section>
@@ -78,14 +82,8 @@ export default function App() {
           id="ddlStates"
           onChange={(e) => handleStates(e)}
         >
-          <option value="0">Select State</option>
-          {state && state !== undefined
-            ? state?.map(({ id, name }, i) => (
-                <option key={i} value={id}>
-                  {name}
-                </option>
-              ))
-            : 'No State'}
+          <option value="0">—</option>
+          {renderItems(state)}
         </select>
       </section>
       <section>
@@ -95,14 +93,8 @@ export default function App() {
           id="ddlCities"
           onChange={(e) => handleCities(e)}
         >
-          <option value="0">Select City</option>
-          {city && city !== undefined
-            ? city?.map(({ id, name }, i) => (
-                <option key={i} value={id}>
-                  {name}
-                </option>
-              ))
-            : 'No State'}
+          <option value="0">—</option>
+          {renderItems(city)}
         </select>
       </section>
     </div>
